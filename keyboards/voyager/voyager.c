@@ -233,19 +233,19 @@ const is31_led PROGMEM g_is31_leds[DRIVER_LED_TOTAL] = {
 };
 
 led_config_t g_led_config = { {
-    {   NO_LED, 0,  5, 10, 15, 20, 25 },
-    {   NO_LED, 1,  6, 11, 16, 21, 26 },
-    {   NO_LED, 2,  7, 12, 17, 22, 27 },
-    {   NO_LED, 3,  8, 13, 18, 23, NO_LED },
-    {   NO_LED,  NO_LED, NO_LED, NO_LED, 24, NO_LED, NO_LED },
-    {  32, 33, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED },
-    {  41, 46, 51, 56, 61, 65, NO_LED },
-    
-    {  66, 62, 57, 52, 47, 42, NO_LED },
-    {  67, 63, 58, 53, 48, 43, NO_LED },
-    {  NO_LED, 64, 59, 54, 49, 44, NO_LED },
-    {  NO_LED, NO_LED, 60, NO_LED, NO_LED, NO_LED, NO_LED },
-    {  NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, 69, 68 },
+    {   NO_LED, 0,  1, 2, 3, 4, 5 },
+    {   NO_LED, 6,  7, 8, 9, 10, 11 },
+    {   NO_LED, 12, 13, 14, 15, 16, 17 },
+    {   NO_LED, 18,  19, 20, 21, 22, NO_LED },
+    {   NO_LED,  NO_LED, NO_LED, NO_LED, 23, NO_LED, NO_LED },
+    {   24, 25, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED },
+
+    {  26, 27, 28, 29, 30, 31, NO_LED },
+    {  32, 33, 34, 35, 36, 37, NO_LED },
+    {  38, 39, 40, 41, 42, 43, NO_LED },
+    {  NO_LED, 45, 46, 47, 48, 49, NO_LED },
+    {  NO_LED, NO_LED, 44, NO_LED, 44, NO_LED, NO_LED },
+    {  NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, 50, 51 },
 }, {
     {  0,   4}, {  0,  20}, {  0,  36}, {  0, 52}, {  0,  68},
     { 16,   3}, { 16,  19}, { 16,  35}, { 16, 51}, { 16,  67},
@@ -264,7 +264,6 @@ led_config_t g_led_config = { {
     {160,   3}, {160,  19}, {160,  35}, {160,  51}, {144,   4},
     {144,  20}, {144,  36}, {152,  69}, {140,  80}, {128,  91},
     {132,  69}
-
 }, {
     1, 1, 1, 1, 1, 4,
     4, 4, 4, 1, 4, 4,
