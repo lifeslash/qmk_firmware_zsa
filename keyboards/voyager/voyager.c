@@ -38,7 +38,9 @@ void dynamic_macro_record_end_user(int8_t direction) {
 #endif
 
 void voyager_led_task(void) {
+#ifdef ORYX_ENABLE
     if (rawhid_state.rgb_control) return;
+#endif
     if (is_launching) {
         STATUS_LED_1(false);
         STATUS_LED_2(false);
@@ -109,7 +111,10 @@ void keyboard_pre_init_kb(void) {
 #if !defined(VOYAGER_USER_LEDS)
 layer_state_t layer_state_set_kb(layer_state_t state) {
     state = layer_state_set_user(state);
-    if (is_launching || !keyboard_config.led_level || rawhid_state.rgb_control) return state;
+    if (is_launching || !keyboard_config.led_level) return state;
+#ifdef ORYX_ENABLE
+    if (rawhid_state.rgb_control) return;
+#endif
     bool LED_1 = false;
     bool LED_2 = false;
     bool LED_3 = false;
