@@ -1,36 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
-#include "keymap_german.h"
-#include "keymap_nordic.h"
-#include "keymap_french.h"
-#include "keymap_spanish.h"
-#include "keymap_hungarian.h"
-#include "keymap_swedish.h"
-#include "keymap_br_abnt2.h"
-#include "keymap_canadian_multilingual.h"
-#include "keymap_german_ch.h"
-#include "keymap_jp.h"
-#include "keymap_korean.h"
-#include "keymap_bepo.h"
-#include "keymap_italian.h"
-#include "keymap_slovenian.h"
-#include "keymap_lithuanian_azerty.h"
-#include "keymap_danish.h"
-#include "keymap_norwegian.h"
-#include "keymap_portuguese.h"
-#include "keymap_contributions.h"
-#include "keymap_czech.h"
-#include "keymap_romanian.h"
-#include "keymap_russian.h"
-#include "keymap_uk.h"
-#include "keymap_estonian.h"
-#include "keymap_belgian.h"
-#include "keymap_us_international.h"
-#include "keymap_croatian.h"
-#include "keymap_turkish_q.h"
-#include "keymap_slovak.h"
+// #include "keymap_jp.h"
 
-#define KC_MAC_UNDO LGUI(KC_Z)
+/*#define KC_MAC_UNDO LGUI(KC_Z)
 #define KC_MAC_CUT LGUI(KC_X)
 #define KC_MAC_COPY LGUI(KC_C)
 #define KC_MAC_PASTE LGUI(KC_V)
@@ -46,56 +18,75 @@
 #define LSA_T(kc) MT(MOD_LSFT | MOD_LALT, kc)
 #define BP_NDSH_MAC ALGR(KC_8)
 #define SE_SECT_MAC ALGR(KC_6)
-#define MOON_LED_LEVEL LED_LEVEL
+#define MOON_LED_LEVEL LED_LEVEL //*/
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   HSV_0_255_255,
   HSV_74_255_255,
   HSV_169_255_255,
+  HANZEN,
 };
 
-
+bool is_hanzen = true;
 
 enum tap_dance_codes {
   DANCE_0,
+  TD_1_ESC,   // KC_1, KC_ESC
+  TD_T_QUOT,  // KC_T, KC_QUOT
+  TD_G_EQL,   // KC_G, KC_EQL
+  TD_Y_BSLS,  // KC_Y, KC_BSLS
+  TD_H_MINS,  // KC_H, KC_MINS
+  TD_B_LBRC,  // KC_B, KC_LBRC
+  TD_N_RBRC,  // KC_N, KC_RBRC
 };
+
+// FIXME: tap dance feature does not worked!
+// FIXME: layer 2 cannot changed
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    TD(DANCE_0),    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
-    CAPS_WORD,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,      
-    MT(MOD_LSFT, KC_BSPACE),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCOLON,      MT(MOD_RSFT, KC_QUOTE),
-    KC_LGUI,        MT(MOD_LALT, KC_Z),KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         MT(MOD_RALT, KC_SLASH),KC_RCTRL,       
-                                                    LT(1,KC_ENTER), MT(MOD_LCTL, KC_TAB),                                MT(MOD_LSFT, KC_BSPACE),LT(2,KC_SPACE)
+    TD_1_ESC,       KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           KC_GRV,         KC_WAKE,       
+    LCTL_T(KC_TAB), LT(1,KC_Q),     KC_W,           KC_E,           KC_R,           TD_T_QUOT,                                      TD_Y_BSLS,      KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,      
+    CAPS_WORD,      LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD_G_EQL,                                       TD_H_MINS,      KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  LALT_T(KC_APP),
+    RSFT_T(KC_LPRN),LGUI_T(KC_Z),   LALT_T(KC_X),   KC_C,           KC_V,           TD_B_LBRC,                                      TD_N_RBRC,      KC_M,           KC_COMMA,       RALT_T(KC_DOT), RGUI_T(KC_SLSH),RSFT_T(KC_RPRN),       
+                                                                    KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
   [1] = LAYOUT_voyager(
-    KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
-    KC_GRAVE,       KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,                                        KC_7,           KC_8,           KC_9,           KC_MINUS,       KC_SLASH,       KC_F12,         
-    KC_TRANSPARENT, KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,                                        KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_ASTR,        KC_BSPACE,      
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_LBRACKET,    KC_RBRACKET,    KC_LCBR,        KC_RCBR,                                        KC_1,           KC_2,           KC_3,           KC_DOT,         KC_EQUAL,       KC_ENTER,       
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_0
+    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
+    QK_BOOT,        KC_NO,          KC_AT,          KC_DLR,         KC_CIRC,        KC_ASTR,                                        KC_HOME,        KC_PGUP,        KC_7,           KC_8,           KC_9,           KC_PSCR,           
+    KC_CAPS,        KC_EXLM,        KC_HASH,        KC_PERC,        KC_AMPR,        KC_ESC,                                         KC_END,         KC_PGDN,        KC_4,           KC_5,           KC_6,           KC_INS,      
+    KC_NO,          RGB_MOD,        KC_INT3,        KC_INT1,        KC_LEFT,        KC_DOWN,                                        KC_UP,          KC_RGHT,        KC_1,           KC_2,           KC_3,           KC_0,       
+                                                                    RGB_VAD,        RGB_VAI,                                        RGB_HUD,        RGB_HUI
   ),
   [2] = LAYOUT_voyager(
-    RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MOD,        RGB_SLD,        RGB_VAD,        RGB_VAI,                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_AUDIO_MUTE,  KC_TRANSPARENT,                                 KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_TRANSPARENT,                                 KC_PGDOWN,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,                                KC_TRANSPARENT, LCTL(LSFT(KC_TAB)),LCTL(KC_TAB),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,                                          KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_NO,          KC_NO,          
+    KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,                                          KC_PGDOWN,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,                                KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+                                                                    KC_BTN1,        KC_BTN2,                                        KC_BTN1,        KC_BTN2       
   ),
 };
-
+/*
 const uint16_t PROGMEM combo0[] = { MT(MOD_RSFT, KC_QUOTE), MT(MOD_LSFT, KC_BSPACE), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_CAPSLOCK),
-};
+}; //*/
 
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-
+    case HANZEN:
+      if (is_hanzen) {
+        is_hanzen = false;
+        register_code(KC_LNG1);
+      } else {
+        is_hanzen = true;
+        register_code(KC_LNG2);
+      }
+      return false;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -193,4 +184,11 @@ void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
         [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
+        [TD_1_ESC] =  ACTION_TAP_DANCE_DOUBLE(KC_1, KC_ESC),
+        [TD_T_QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_T, KC_QUOT),
+        [TD_G_EQL] =  ACTION_TAP_DANCE_DOUBLE(KC_G, KC_EQL),
+        [TD_Y_BSLS] = ACTION_TAP_DANCE_DOUBLE(KC_Y, KC_BSLS),
+        [TD_H_MINS] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_MINS),
+        [TD_B_LBRC] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_LBRC),
+        [TD_N_RBRC] = ACTION_TAP_DANCE_DOUBLE(KC_N, KC_RBRC),
 };

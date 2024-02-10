@@ -13,7 +13,7 @@
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
-
+/*
 // disable one shot keys
 #define NO_ACTION_ONESHOT
 
