@@ -13,7 +13,7 @@
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
-/*
+
 // disable one shot keys
 #define NO_ACTION_ONESHOT
 
@@ -22,10 +22,6 @@
 
 // disable audio efatures
 #define NO_MUSIC_MODE
-
-// number of layer to 8 layers
-// #define LAYER_STATE_8BIT
-// #define LAYER_STATE_16BIT
 
 // disable RGB lights
 // For full list of effects, see:
