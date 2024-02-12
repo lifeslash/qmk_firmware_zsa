@@ -42,14 +42,13 @@ enum tap_dance_codes {
 };
 
 // FIXME: tap dance feature does not worked!
-// FIXME: layer 2 cannot changed
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    TD_1_ESC,       KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           KC_GRV,         KC_WAKE,       
-    LCTL_T(KC_TAB), LT(1,KC_Q),     KC_W,           KC_E,           KC_R,           TD_T_QUOT,                                      TD_Y_BSLS,      KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,      
-    CAPS_WORD,      LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD_G_EQL,                                       TD_H_MINS,      KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  LALT_T(KC_APP),
-    RSFT_T(KC_LPRN),LGUI_T(KC_Z),   LALT_T(KC_X),   KC_C,           KC_V,           TD_B_LBRC,                                      TD_N_RBRC,      KC_M,           KC_COMMA,       RALT_T(KC_DOT), RGUI_T(KC_SLSH),RSFT_T(KC_RPRN),       
+    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           KC_GRV,         KC_WAKE,       
+    MT(MOD_LCTL,KC_TAB),LT(1,KC_Q), KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,      
+    CAPS_WORD,      LT(2,KC_A),     KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  MT(MOD_RCTL,KC_APP),
+    KC_LSPO,        MT(MOD_LGUI,KC_Z),MT(MOD_LALT,KC_X),KC_C,       KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       MT(MOD_RALT,KC_DOT),MT(MOD_RGUI,KC_SLSH),KC_RSPC,       
                                                                     KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
   [1] = LAYOUT_voyager(
@@ -73,8 +72,6 @@ const uint16_t PROGMEM combo0[] = { MT(MOD_RSFT, KC_QUOTE), MT(MOD_LSFT, KC_BSPA
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_CAPSLOCK),
 }; //*/
-
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {

@@ -5,15 +5,15 @@
 # this option cause error
 # LTO_ENABLE = yes # enable link time optimization
 
-CONSOLE_ENABLE = yes
+CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
-MOUSEKEY_ENABLE = no
+MOUSEKEY_ENABLE = yes
 ORYX_ENABLE = yes
 RGB_MATRIX_CUSTOM_KB = yes
 TAP_DANCE_ENABLE = yes
-SPACE_CADET_ENABLE = no
+SPACE_CADET_ENABLE = yes
 CAPS_WORD_ENABLE = yes
-COMBO_ENABLE = yes
+COMBO_ENABLE = no
 SRC = matrix.c
 
 # CONSOLE_ENABLE = no # disable output debug infos
