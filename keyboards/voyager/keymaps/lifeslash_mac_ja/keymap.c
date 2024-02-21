@@ -49,8 +49,8 @@ enum tap_dance_codes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
-    MT(MOD_LCTL,KC_TAB),LT(1,KC_Q), KC_W,           KC_E,           KC_R,           TD(TD_T_QUOT),                                  TD(TD_Y_BSLS),  KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,      
-    CW_TOGG,        LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  MT(MOD_RCTL,KC_APP),
+    MT(MOD_LCTL,KC_TAB),LT(1,KC_Q), KC_W,           KC_E,           KC_R,           TD(TD_T_QUOT),                                  TD(TD_Y_BSLS),  KC_U,           KC_I,           KC_O,           LT(1,KC_P),     MT(MOD_LCTL,KC_DEL),      
+    CW_TOGG,        LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  KC_APP,
     SC_LSPO,        MT(MOD_LGUI,KC_Z),MT(MOD_LALT,KC_X),KC_C,       KC_V,           TD(TD_B_LBRC),                                  TD(TD_N_RBRC),  KC_M,           KC_COMMA,       MT(MOD_RALT,KC_DOT),MT(MOD_RGUI,KC_SLSH),SC_RSPC,       
                                                                     KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
