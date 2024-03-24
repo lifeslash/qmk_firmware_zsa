@@ -35,7 +35,6 @@ uint16_t alt_tab_timer = 0;
 
 enum tap_dance_codes {
   DANCE_0,
-  TD_1_ESC,   // KC_1, KC_ESC
   TD_T_QUOT,  // KC_T, KC_QUOT
   TD_G_EQL,   // KC_G, KC_EQL
   TD_Y_BSLS,  // KC_Y, KC_BSLS
@@ -56,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
-    KC_NO,          KC_NO,          KC_AT,          KC_DLR,         KC_CIRC,        KC_ASTR,                                        KC_HOME,        KC_PGDN,        KC_PGUP,        KC_END,         KC_NO,          KC_PSCR,           
-    KC_CAPS,        KC_EXLM,        KC_HASH,        KC_PERC,        KC_AMPR,        KC_ESC,                                         KC_LEFT,        KC_DOWN,        KC_UP,          KC_RGHT,        KC_NO,          KC_INS,      
-    RGB_MOD,        KC_INT3,        KC_INT2,        KC_INT1,        KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,       
+    KC_ESC,         KC_NO,          KC_AT,          KC_DLR,         KC_CIRC,        KC_ASTR,                                        KC_HOME,        KC_PGDN,        KC_PGUP,        KC_END,         DM_REC1,        KC_PSCR,           
+    KC_CAPS,        KC_EXLM,        KC_HASH,        KC_PERC,        KC_AMPR,        KC_NO,                                          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RGHT,        DM_REC2,        KC_INS,      
+    RGB_MOD,        KC_INT3,        KC_INT2,        KC_INT1,        KC_NO,          DM_PLY1,                                        DM_PLY2,        KC_NO,          KC_NO,          KC_NO,          DM_RSTP,        KC_NO,       
                                                                     RGB_VAD,        RGB_VAI,                                        RGB_HUD,        RGB_HUI
   ),
   [2] = LAYOUT_voyager(
@@ -212,7 +211,6 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
         [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
-        [TD_1_ESC] =  ACTION_TAP_DANCE_DOUBLE(KC_1, KC_ESC),
         [TD_T_QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_T, KC_QUOT),
         [TD_G_EQL] =  ACTION_TAP_DANCE_DOUBLE(KC_G, KC_EQL),
         [TD_Y_BSLS] = ACTION_TAP_DANCE_DOUBLE(KC_Y, KC_BSLS),
