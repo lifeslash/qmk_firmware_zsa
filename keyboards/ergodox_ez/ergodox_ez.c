@@ -335,6 +335,9 @@ led_config_t g_led_config = { {
 
 #    ifdef ORYX_CONFIGURATOR
 void keyboard_post_init_kb(void) {
+    if (rgb_matrix_get_mode() >= RGB_MATRIX_EFFECT_MAX) {
+        rgb_matrix_mode(RGB_MATRIX_NONE);
+    }
     rgb_matrix_enable_noeeprom();
     keyboard_post_init_user();
 }
