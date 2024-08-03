@@ -21,6 +21,7 @@ You can request changes by making a fork and opening a [pull request](https://gi
 * [ErgoDox EZ](/keyboards/ergodox_ez/)
 * [Planck EZ](/keyboards/planck/ez)
 * [Moonlander Mark I](/keyboards/moonlander)
+* [Voyager](/keyboards/voyager)
 
 ## Building
 
