@@ -22,7 +22,7 @@
 #define MOON_LED_LEVEL LED_LEVEL //*/
 
 enum custom_keycodes {
-  RGB_SLD = ML_SAFE_RANGE,
+  RGB_SLD = SAFE_RANGE,
   HSV_0_255_255,
   HSV_74_255_255,
   HSV_169_255_255,

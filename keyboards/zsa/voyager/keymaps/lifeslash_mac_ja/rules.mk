@@ -14,7 +14,10 @@ TAP_DANCE_ENABLE = yes
 SPACE_CADET_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = no
-SRC = matrix.c
+
+VPATH += drivers/gpio
+SRC += matrix.c mcp23018.c
+I2C_DRIVER_REQUIRED = yes
 
 # CONSOLE_ENABLE = no # disable output debug infos
 # COMMAND_ENABLE = no # disable boot magic keycode
