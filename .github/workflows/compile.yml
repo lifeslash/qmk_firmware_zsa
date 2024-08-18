@@ -1,0 +1,33 @@
+name: Build my QMK configuration
+
+on:
+  push:
+    branches:
+      - lifeslash24
+
+jobs:
+  build-qmk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: d3adb5/build-qmk-fw@v1
+        with:
+          keyboard: ergodox_ez
+          keymap: lifeslash_linux
+          output-dir: qmk-firmware-to-be-flashed
+      - uses: d3adb5/build-qmk-fw@v1
+        with:
+          keyboard: ergodox_ez
+          keymap: lifeslash_win
+          output-dir: qmk-firmware-to-be-flashed
+      - uses: d3adb5/build-qmk-fw@v1
+        with:
+          keyboard: voyager
+          keymap: lifeslash_mac_ja
+          output-dir: qmk-firmware-to-be-flashed
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: built-images
+          path: qmk-firmware-to-be-flashed
