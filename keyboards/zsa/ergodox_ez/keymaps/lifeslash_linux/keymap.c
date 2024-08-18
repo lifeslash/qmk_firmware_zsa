@@ -1,34 +1,20 @@
-/* v1.1.0.4 Linux */
-
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "tap_dance/tap_dance_action.c"
 
-#define BASE 0 // default layer
-#define SYMB 1 // symbols
-#define MDIA 2 // media keys
+enum layers {
+  BASE, // default layer
+  SYMB, // symbols
+  MDIA, // media keys
+};
 
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 
 enum custom_keycodes {
-#ifdef ORYX_CONFIGURATOR
-  VRSN = EZ_SAFE_RANGE
-#else
-  VRSN = SAFE_RANGE,
-#endif
+  VRSN = QK_USER,
   RGB_SLD,
   ALT_TAB
-};
-
-enum td_codes {
-  // tap dance keycode must be started from 0
-  TD_ESC_CAPS, // tap dance(once for escape, twice for caps lock)
-};
-
-// Tap Dance definitions
-tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Escape, twice for Caps Lock
-    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -161,8 +147,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch (keycode) {
       case VRSN:
-        // SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-        SEND_STRING ("ergodox_ez/lifeslash_linux @ v1.1.0.5");
+        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
         return false;
       case ALT_TAB:
         if (!is_alt_tab_active) {
@@ -225,7 +210,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_2);
         #endif
         break;
-      /*case 3: // 3 or more layer is not used
+      case 3:
         ergodox_right_led_3_on();
         #ifdef RGBLIGHT_COLOR_LAYER_3
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_3);
@@ -275,13 +260,3 @@ void matrix_scan_user(void) {
     }
   }
 }
-
-/*void suspend_power_down_kb(void)
-{
-    rgb_matrix_set_suspend_state(true);
-}
-
-void suspend_wakeup_init_kb(void)
-{
-    rgb_matrix_set_suspend_state(false);
-}//*/

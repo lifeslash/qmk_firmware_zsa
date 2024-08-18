@@ -2,6 +2,8 @@
 #git fetch upstream
 #git checkout -b firmware23 upstream/firmware23
 #git push origin firmware23
+#python3 -m pip install --user qmk
+#qmk setup
 #qmk git-submodule
 
 #macBin="voyager_lifeslash_mac_ja.bin"
