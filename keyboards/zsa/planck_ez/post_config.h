@@ -1,6 +1,4 @@
-/* Copyright 2020 ZSA Technology Labs, Inc <@zsa>
- * Copyright 2020 Jack Humbert <jack.humb@gmail.com>
- * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
+/* Copyright 2023 ZSA Technology Labs, Inc <@zsa>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,25 +12,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+*/
 #pragma once
 
-/* key matrix size */
-#define MATRIX_ROWS 12
-#define MATRIX_COLS 7
+#ifdef AUDIO_ENABLE
+#    ifndef STARTUP_SONG
+#        define STARTUP_SONG SONG(E__NOTE(_DS5), E__NOTE(_D5), E__NOTE(_AS4), Q__NOTE(_F5))
+#    endif
 
-#define EEPROM_I2C_24LC128
-
-#define IS31FL3731_I2C_ADDRESS_1 IS31FL3731_I2C_ADDRESS_GND
-#define IS31FL3731_I2C_ADDRESS_2 IS31FL3731_I2C_ADDRESS_VCC
-#define IS31FL3731_I2C_TIMEOUT 5
-
-#define MUSIC_MAP
-
-#define FIRMWARE_VERSION_SIZE 17
-#define DYNAMIC_KEYMAP_EEPROM_ADDR (EECONFIG_SIZE + FIRMWARE_VERSION_SIZE)
-
-#define AUDIO_PIN A5
-#define AUDIO_PIN_ALT A4
-#define AUDIO_PIN_ALT_AS_NEGATIVE
+#    ifndef GOODBYE_SONG
+#        define GOODBYE_SONG SONG(E__NOTE(_D5), E__NOTE(_F5), E__NOTE(_C5), Q__NOTE(_AS4))
+#    endif
+#endif
