@@ -36,8 +36,8 @@ uint16_t alt_tab_timer = 0;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
-    KC_TAB,         LT(1,KC_Q),     KC_W,           KC_E,           KC_R,           TD(TD_T_QUOT),                                  TD(TD_Y_BSLS),  KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,
+    TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           TD(TD_6_QUOT),                                  TD(TD_7_BSLS),  KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
+    KC_TAB,         LT(1,KC_Q),     KC_W,           KC_E,           KC_R,           TD(TD_T_DQUO),                                  TD(TD_Y_PIPE),  KC_U,           KC_I,           KC_O,           LT(1,KC_P),     KC_DEL,
     CTL_T(KC_CAPS), LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  CTL_T(KC_MCTL),
     SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           TD(TD_B_PLUS),                                  TD(TD_N_UNDS),  KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
                                                                     KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
