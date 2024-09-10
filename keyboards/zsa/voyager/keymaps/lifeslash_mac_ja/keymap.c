@@ -44,17 +44,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
-    KC_ESC,         KC_NO,          KC_AT,          KC_DLR,         KC_CIRC,        KC_ASTR,                                        KC_NO,          KC_INT1,        KC_INT2,        KC_INT3,        KC_NO,          KC_PSCR,           
-    KC_CAPS,        KC_EXLM,        KC_HASH,        KC_PERC,        KC_AMPR,        KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_INS,      
-    KC_LBRC,        KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_RBRC,       
+    KC_ESC,         KC_NO,          KC_AT,          KC_DLR,         KC_CIRC,        KC_ASTR,                                        KC_NO,          KC_MINS,        KC_UNDS,        KC_EQL,         KC_PLUS,        KC_PSCR,           
+    KC_CAPS,        KC_EXLM,        KC_HASH,        KC_PERC,        KC_AMPR,        KC_NO,                                          KC_NO,          KC_QUOT,        KC_DQUO,        KC_BSLS,        KC_PIPE,        KC_INS,      
+    KC_LBRC,        KC_NO,          KC_INT1,        KC_INT2,        KC_INT3,        KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_RBRC,       
                                                                     KC_LEFT,        KC_DOWN,                                        KC_UP,          KC_RGHT
   ),
   [2] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,KC_NO,          KC_NO,          
-    KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,                                          RGB_MOD,        RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_NO,          
-    KC_NO,          KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_7,           KC_8,           KC_9,           KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_4,           KC_5,           KC_6,           KC_NO,          KC_NO,          
+    KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,                                          KC_NO,          KC_1,           KC_2,           KC_3,           KC_NO,          KC_NO,          
+    KC_NO,          KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_NO,          KC_NO,                                          KC_NO,          KC_0,           KC_COMMA,       KC_DOT,         KC_NO,          KC_NO,          
                                                                     KC_HOME,        KC_PGDN,                                        KC_PGUP,        KC_END       
+  ),
+  [3] = LAYOUT_voyager(
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,KC_NO,          KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          RGB_MOD,        RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_NO,          
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+                                                                    KC_NO,          KC_NO,                                          KC_NO,          KC_NO       
   ),
 };
 /*
