@@ -11,6 +11,8 @@
 #define LAYER_STATE_8BIT
 // #define LAYER_STATE_16BIT
 
+#define TAPPING_TERM 165
+
 // disable RGB lights
 // For full list of effects, see:
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects

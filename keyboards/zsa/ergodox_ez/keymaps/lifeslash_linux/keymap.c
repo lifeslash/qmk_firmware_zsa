@@ -6,6 +6,7 @@ enum layers {
   BASE, // default layer
   SYMB, // symbols
   MDIA, // media keys
+  RGBA, // rgb lights
 };
 
 bool is_alt_tab_active = false;
@@ -23,91 +24,132 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |CtlAltLe|   1  |   2  |   3  |   4  |   5  |   6  |           |   7  |   8  |   9  |   0  |AltTab|CtAltT|CtlAltRi|
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    | Q/L1 |   W  |   E  |   R  |   T  |  '   |           |   \  |   Y  |   U  |   I  |   O  | P/L1 |  DEL   |
+ * | Tab    | Q/L1 | W/L3 |   E  |   R  |   T  |  '   |           |   \  |   Y  |   U  |   I  | O/L3 | P/L1 |  DEL   |
  * |--------+------+------+------+------+------|  Cmd |           |  Cmd |------+------+------+------+------+--------|
- * |WordCAPS|   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   |APP/Alt |
+ * |WordCAPS| A/L2 |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  | ;/L2 |APP/Alt |
  * |--------+------+------+------+------+------|   =  |           |   -  |------+------+------+------+------+--------|
  * | LShift(|Z/Ctrl| X/ALT|   C  |   V  |   B  |  MEH |           |HYPER |   N  |   M  |   ,  | ./ALT|//Ctrl| RShift)|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | Grv  |  '"  | Esc  | Left | Down |                                       |  Up  | Right|   [  |   ]  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |      |DM_RC1|       |DM_RC2|        |
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |DM_STP|       |DM_STP|        |      |
- *                                 | Space|Backsp|------|       |------|  Han   |Enter |
- *                                 |      |ace   |DM_PL1|       |DM_PL2|        |      |
- *                                 `--------------------'       `----------------------'
+ *                                        |      |DM_RC1|       |DM_RC2|      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |DM_STP|       |DM_STP|      |      |
+ *                                 | Space|Backsp|------|       |------|  Han |Enter |
+ *                                 |      |ace   |DM_PL1|       |DM_PL2|      |      |
+ *                                 `--------------------'       `--------------------'
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  LCA(KC_LEFT),    KC_1,        KC_2,       KC_3,    KC_4,    KC_5,    KC_6,
-  KC_TAB,          LT(SYMB,KC_Q),KC_W,      KC_E,    KC_R,    KC_T,    GUI_T(KC_QUOT),
-  CW_TOGG,         KC_A,        KC_S,       KC_D,    KC_F,    KC_G,
-  SC_LSPO,         CTL_T(KC_Z), ALT_T(KC_X),KC_C,    KC_V,    KC_B,    MEH_T(KC_EQL),
-  KC_GRV,          KC_QUOT,     TD(TD_ESC_CAPS),KC_LEFT,KC_DOWN,
-                                                                 KC_NO,   DM_REC1,
-                                                                          DM_RSTP,
-                                                         KC_SPC, KC_BSPC, DM_PLY1,
+  LCA(KC_LEFT),   KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_6,
+  KC_TAB,         LT(1,KC_Q),     LT(3,KC_W),     KC_E,           KC_R,           KC_T,           GUI_T(KC_QUOT),
+  CW_TOGG,        LT(2,KC_A),     KC_S,           KC_D,           KC_F,           KC_G,
+  SC_LSPO,        CTL_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           KC_B,           MEH_T(KC_EQL),
+  KC_GRV,         KC_QUOT,        TD(TD_ESC_CAPS),TD(TD_C_LEFT),  KC_DOWN,
+                                                                                  KC_NO,          DM_REC1,
+                                                                                                  DM_RSTP,
+                                                                  KC_SPC,         KC_BSPC,        DM_PLY1,
   // right hand
-  KC_7,         KC_8,    KC_9,    KC_0,    ALT_TAB,           LCA(KC_T),          LCA(KC_RGHT),
-  GUI_T(KC_BSLS),KC_Y,   KC_U,    KC_I,    KC_O,              LT(SYMB,KC_P),      KC_DEL,
-  KC_H,         KC_J,    KC_K,    KC_L,    KC_SCLN,           ALT_T(KC_APP),
-  HYPR_T(KC_MINS),KC_N,  KC_M,    KC_COMM, ALT_T(KC_DOT),     CTL_T(KC_SLSH),     SC_RSPC,
-  KC_UP,        KC_RGHT, KC_LBRC, KC_RBRC, TT(SYMB),
-  DM_REC2,   KC_NO,
+  KC_7,           KC_8,           KC_9,           KC_0,           ALT_TAB,        LCA(KC_T),      LCA(KC_RGHT),
+  GUI_T(KC_BSLS), KC_Y,           KC_U,           KC_I,           LT(3,KC_O),     LT(1,KC_P),     KC_DEL,
+                  KC_H,           KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  ALT_T(KC_APP),
+  HYPR_T(KC_MINS),KC_N,           KC_M,           KC_COMM,        ALT_T(KC_DOT),  CTL_T(KC_SLSH), SC_RSPC,
+                                  KC_UP,          TD(TD_C_RGHT),  KC_LBRC,        KC_RBRC,        TT(SYMB),
+  DM_REC2,        KC_NO,
   DM_RSTP,
-  DM_PLY2,   C(KC_SPC),  KC_ENT
+  DM_PLY2,        C(KC_SPC),      KC_ENT
 ),
 /* Keymap 1: Symbol Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
  * |Version  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |           |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |  PRTSC |
  * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |RESET    | ESC  |   @  |  $   |  ^   |  *   |      |           |      |   7  |   8  |   9  |   *  |   /  |   INS  |
+ * |RESET    |      |   !  |  @   |  #   |  $   |      |           |      |   '  |   "  |   \  |   |  |      |   INS  |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   !  |   #  |  %   |  &   |      |------|           |------|   4  |   5  |   6  |   +  |   -  |        |
+ * |         |      |   %  |  ^   |  &   |  *   |------|           |------|   =  |   +  |   -  |   _  |      |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |    [    |      |      |      | jis\ | jis_ |      |           |      |   1  |   2  |   3  |   0  |   =  |   ]    |
+ * |    [    |      |      |      | jis\ | jis_ |      |           |      |      |      |      |      |      |   ]    |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | EPRM  |      |      | Home | PgDn |                                       | PgUp | End  |      |      |      |
  *   `-----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |Animat|      |       |Toggle|Solid |
+ *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |Bright|Bright|      |       |      |Hue-  |Hue+  |
- *                                 |ness- |ness+ |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 | LEFT | DOWN |------|       |------|  UP  | RGHT |
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 [SYMB] = LAYOUT_ergodox(
   // left hand
-  VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
-  QK_BOOT, KC_ESC,  KC_AT,   KC_DLR,  KC_CIRC, KC_ASTR, KC_NO,
-  KC_NO,   KC_EXLM, KC_HASH, KC_PERC, KC_AMPR, KC_NO,
-  KC_LBRC, KC_NO,   KC_NO,   KC_NO,   KC_INT3, KC_INT1, KC_NO,
-  EE_CLR,  KC_NO,   KC_NO,   KC_HOME, KC_PGDN,
-                                               RGB_MOD, KC_NO,
-                                                        KC_NO,
-                                      RGB_VAD, RGB_VAI, KC_NO,
+  VRSN,           KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,
+  QK_BOOT,        KC_NO,          KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_NO,
+  KC_NO,          KC_NO,          KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,
+  KC_LBRC,        KC_NO,          KC_NO,          KC_NO,          KC_INT3,        KC_INT1,        KC_NO,
+  EE_CLR,         KC_NO,          KC_NO,          KC_HOME,        KC_PGDN,
+                                                                                  KC_NO,          KC_NO,
+                                                                                                  KC_NO,
+                                                                  TD(TD_C_LEFT),  KC_DOWN,        KC_NO,
   // right hand
-  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR,
-  KC_NO,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_SLSH, KC_INS,
-  KC_4,    KC_5,    KC_6,    KC_PLUS, KC_MINS, KC_NO,
-  KC_NO,   KC_1,    KC_2,    KC_3,    KC_0,    KC_EQL,  KC_RBRC,
-  KC_PGUP, KC_END,  KC_NO,   KC_NO,   KC_TRNS,
-  RGB_TOG, RGB_SLD,
+  KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         KC_PSCR,
+  KC_NO,          KC_QUOT,        KC_DQUO,        KC_BSLS,        KC_PIPE,        KC_NO,          KC_INS,
+                  KC_MINS,        KC_UNDS,        KC_EQL,         KC_PLUS,        KC_NO,          KC_NO,
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_RBRC,
+                                  KC_PGUP,        KC_END,         KC_NO,          KC_NO,          KC_TRNS,
+  KC_NO,          KC_NO,
   KC_NO,
-  KC_NO,   RGB_HUD, RGB_HUI
+  KC_NO,          KC_UP,          TD(TD_C_RGHT)
 ),
 /* Keymap 2: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |MS UP |      |      |      |      |           |      |      |   7  |   8  |   9  |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |MS LF |MS DN |MS RG |      |      |------|           |------|      |   4  |   5  |   6  |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        | BT1  | BT3  | BT2  |      |      |      |           |      |      |   1  |   2  |   3  |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |   0  |   ,  |   .  |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 | HOME | PGDN |------|       |------| PGUP | END  |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[MDIA] = LAYOUT_ergodox(
+  // left hand
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,  
+  KC_NO,          KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+                                                                                  KC_NO,          KC_NO,  
+                                                                                                  KC_NO,  
+                                                                  KC_HOME,        KC_PGDN,        KC_NO,  
+  // right hand
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_7,           KC_8,           KC_9,           KC_NO,          KC_NO,  
+                  KC_NO,          KC_4,           KC_5,           KC_6,           KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_1,           KC_2,           KC_3,           KC_NO,          KC_NO,  
+                                  KC_0,           KC_COMM,        KC_DOT,         KC_NO,          KC_TRNS,  
+  KC_NO,          KC_NO,  
+  KC_NO,  
+  KC_NO,          KC_PGUP,        KC_END
+),
+/* Keymap 3: RGB light and setting
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
+ * |        |      |      |      |      |      |------|           |------|  VAD |  VAI |  HUD |  HUI |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -117,29 +159,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |------|       |------|      |  MOD |
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[MDIA] = LAYOUT_ergodox(
+[RGBA] = LAYOUT_ergodox(
   // left hand
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                               KC_NO,   KC_NO,  
-                                                        KC_NO,  
-                                      KC_NO,   KC_NO,   KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+                                                                                  KC_NO,          KC_NO,  
+                                                                                                  KC_NO,  
+                                                                  KC_NO,          KC_NO,          KC_NO,  
   // right hand
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-                    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-  KC_NO,   KC_NO,  
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+                  RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_NO,          KC_NO,
+  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+                                  KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_TRNS,
+  KC_NO,          KC_NO,  
   KC_NO,  
-  KC_NO,   KC_NO,   KC_NO
+  KC_NO,          KC_NO,          RGB_MOD
 ),
 };
 
@@ -254,7 +296,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 void matrix_scan_user(void) {
   if (is_alt_tab_active) {
-    if (timer_elapsed(alt_tab_timer) > 1000 ) {
+    if (timer_elapsed(alt_tab_timer) > 1000) {
       unregister_code(KC_LALT);
       is_alt_tab_active = false;
     }

@@ -39,6 +39,10 @@ enum tap_dance_codes {
     TD_1_LEFT,  // KC_1, LCTL(KC_LEFT)
     TD_GRV_RGHT,// KC_GRV, LCTL(KC_RGHT)
     TD_ESC_CAPS,// KC_ESC, CAPSLOCK
+    TD_C_RGHT,  // KC_RGHT, LCTL(KC_RGHT)
+    TD_C_LEFT,  // KC_LEFT, LCTL(KC_LEFT)
+    TD_A_RGHT,  // KC_RGHT, LALT(KC_RGHT) for mac OS
+    TD_A_LEFT,  // KC_LEFT, LALT(KC_LEFT) for mac OS
 };
 
 // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
@@ -156,4 +160,8 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_1_LEFT] = ACTION_TAP_DANCE_DOUBLE(KC_1, LCTL(KC_LEFT)),
     [TD_GRV_RGHT] = ACTION_TAP_DANCE_DOUBLE(KC_GRV, LCTL(KC_RGHT)),
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+    [TD_C_RGHT] = ACTION_TAP_DANCE_DOUBLE(KC_RGHT, LCTL(KC_RGHT)),
+    [TD_C_LEFT] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, LCTL(KC_LEFT)),
+    [TD_A_RGHT] = ACTION_TAP_DANCE_DOUBLE(KC_RGHT, LALT(KC_RGHT)),
+    [TD_A_LEFT] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, LALT(KC_LEFT)),
 };
