@@ -15,8 +15,12 @@ uint16_t alt_tab_timer = 0;
 enum custom_keycodes {
   VRSN = QK_USER,
   RGB_SLD,
-  ALT_TAB
+  ALT_TAB,
+  LAYER_KEY
 };
+
+#define LAYER_CYCLE_START 0
+#define LAYER_CYCLE_END 2
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -55,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   GUI_T(KC_BSLS), KC_Y,           KC_U,           KC_I,           LT(3,KC_O),     LT(1,KC_P),     KC_DEL,
                   KC_H,           KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  ALT_T(KC_APP),
   HYPR_T(KC_MINS),KC_N,           KC_M,           KC_COMM,        ALT_T(KC_DOT),  CTL_T(KC_SLSH), SC_RSPC,
-                                  KC_UP,          TD(TD_C_RGHT),  KC_LBRC,        KC_RBRC,        TT(SYMB),
+                                  KC_UP,          TD(TD_C_RGHT),  KC_LBRC,        KC_RBRC,        LAYER_KEY,
   DM_REC2,        KC_NO,
   DM_RSTP,
   DM_PLY2,        C(KC_SPC),      KC_ENT
@@ -199,6 +203,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         alt_tab_timer = timer_read();
         register_code(KC_TAB);
         return false;
+      case LAYER_KEY:
+        return false;
       #ifdef RGBLIGHT_ENABLE
       case RGB_SLD:
         rgblight_mode(1);
@@ -210,6 +216,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case ALT_TAB:
         unregister_code(KC_TAB);
         return false;
+      case LAYER_KEY:
+      {
+        uint8_t current_layer = get_highest_layer(layer_state);
+        if(current_layer > LAYER_CYCLE_END || current_layer < LAYER_CYCLE_START) {
+          return false;
+        }
+        uint8_t next_layer = current_layer + 1;
+        if(next_layer > LAYER_CYCLE_END) {
+          next_layer = LAYER_CYCLE_START;
+        }
+        layer_move(next_layer);
+      }
+      return false;
     }
   }
   return true;
