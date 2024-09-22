@@ -96,10 +96,11 @@ void keyboard_pre_init_kb(void) {
 layer_state_t layer_state_set_kb(layer_state_t state) {
     state = layer_state_set_user(state);
 #if !defined(VOYAGER_USER_LEDS)
-    if (is_launching || !keyboard_config.led_level) return state;
 #    ifdef ORYX_ENABLE
+    layer_state_set_oryx(state);
     if (rawhid_state.status_led_control) return state;
 #    endif
+    if (is_launching || !keyboard_config.led_level) return state;
     uint8_t layer = get_highest_layer(state);
     STATUS_LED_1(layer & (1 << 0));
     STATUS_LED_2(layer & (1 << 1));
@@ -107,9 +108,6 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 #    if !defined(CAPS_LOCK_STATUS)
     STATUS_LED_4(layer & (1 << 3));
 #    endif
-#endif
-#ifdef ORYX_ENABLE
-    layer_state_set_oryx(state);
 #endif
     return state;
 }
