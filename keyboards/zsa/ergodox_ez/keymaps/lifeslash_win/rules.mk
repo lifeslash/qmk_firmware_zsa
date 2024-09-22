@@ -3,7 +3,7 @@ LTO_ENABLE = yes # enable link time optimization
 
 CONSOLE_ENABLE = no # disable output debug infos
 COMMAND_ENABLE = no # disable boot magic keycode
-MOUSEKEY_ENABLE = no # mouse keys
+MOUSEKEY_ENABLE = yes # mouse keys
 EXTRAKEY_ENABLE = no # media keys
 #SPACE_CADET_ENABLE = no # shift when held, ( when tapped
 #GRAVE_ESC_ENABLE = no # escape when pressed, ` when shift or gui are held
