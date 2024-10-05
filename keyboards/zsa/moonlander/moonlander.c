@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 #include "moonlander.h"
 
@@ -130,9 +130,9 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
     bool LED_3 = false;
     bool LED_4 = false;
     bool LED_5 = false;
-#if !defined(CAPS_LOCK_STATUS)
+#    if !defined(CAPS_LOCK_STATUS)
     bool LED_6 = false;
-#endif
+#    endif
 
     uint8_t layer = get_highest_layer(state);
     switch (layer) {
@@ -146,9 +146,9 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
             break;
         case 3:
             LED_3 = true;
-#if !defined(CAPS_LOCK_STATUS)
+#    if !defined(CAPS_LOCK_STATUS)
             LED_6 = true;
-#endif
+#    endif
             break;
         case 4:
             LED_4 = true;
@@ -157,9 +157,9 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
             LED_5 = true;
             break;
         case 6:
-#if !defined(CAPS_LOCK_STATUS)
+#    if !defined(CAPS_LOCK_STATUS)
             LED_6 = true;
-#endif
+#    endif
             break;
         default:
             break;
@@ -170,9 +170,9 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
     STATUS_LED_3(LED_3);
     STATUS_LED_4(LED_4);
     STATUS_LED_5(LED_5);
-#if !defined(CAPS_LOCK_STATUS)
+#    if !defined(CAPS_LOCK_STATUS)
     STATUS_LED_6(LED_6);
-#endif
+#    endif
 #endif
 
     return state;
@@ -311,6 +311,16 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(AUDIO_ENABLE) && defined(MUSIC_MAP)
 // clang-format off
+#ifdef HALFMOON
+const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = {
+    { 29, 30, 31, 32, 33, 34, 35 },
+    { 22, 23, 24, 25, 26, 27, 28 },
+    { 15, 16, 17, 18, 19, 20, 21 },
+    {  9, 10, 11, 12, 13, 14,  0 },
+    {  4,  5,  6,  7,  8,  0,  3 },
+    {  0,  0,  0,  0,  0,  1,  2 },
+ };
+#else
 __attribute__ ((weak))
 const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = {
     {58, 59, 60, 61, 62, 63, 64},
@@ -327,6 +337,7 @@ const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = {
     { 0,  0,  0,  4,  5,  6,  7}
 };
 // clang-format on
+#    endif
 #endif
 
 #ifdef CAPS_LOCK_STATUS
@@ -336,7 +347,9 @@ void led_update_ports(led_t led_state) {
 #endif
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) { return false; }
+    if (!process_record_user(keycode, record)) {
+        return false;
+    }
     switch (keycode) {
 #if !defined(MOONLANDER_USER_LEDS)
         case LED_LEVEL:
@@ -389,13 +402,13 @@ void keyboard_post_init_kb(void) {
     keyboard_config.raw = eeconfig_read_kb();
 
     if (!keyboard_config.led_level && !keyboard_config.led_level_res) {
-        keyboard_config.led_level = true;
+        keyboard_config.led_level     = true;
         keyboard_config.led_level_res = 0b11;
         eeconfig_update_kb(keyboard_config.raw);
     }
 #ifdef RGB_MATRIX_ENABLE
     if (rgb_matrix_get_mode() >= RGB_MATRIX_EFFECT_MAX) {
-            rgb_matrix_mode(RGB_MATRIX_NONE);
+        rgb_matrix_mode(RGB_MATRIX_NONE);
     }
     rgb_matrix_enable_noeeprom();
 #endif
@@ -406,11 +419,11 @@ void keyboard_post_init_kb(void) {
     matrix_init_user();
 }
 
-void eeconfig_init_kb(void) {  // EEPROM is getting reset!
-    keyboard_config.raw = 0;
+void eeconfig_init_kb(void) { // EEPROM is getting reset!
+    keyboard_config.raw               = 0;
     keyboard_config.rgb_matrix_enable = true;
-    keyboard_config.led_level = true;
-    keyboard_config.led_level_res = 0b11;
+    keyboard_config.led_level         = true;
+    keyboard_config.led_level_res     = 0b11;
     eeconfig_update_kb(keyboard_config.raw);
     eeconfig_init_user();
 }
