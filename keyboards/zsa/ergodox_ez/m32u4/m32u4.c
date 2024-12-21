@@ -13,24 +13,43 @@ void ergodox_right_led_3_set(uint8_t n) {
     OCR1C = n;
 }
 
+__attribute__((weak)) void ergodox_right_led_1_on(void) {
+    gpio_write_pin_high(ERGODOX_LED_1_PIN);
+}
+
+__attribute__((weak)) void ergodox_right_led_2_on(void) {
+    gpio_write_pin_high(ERGODOX_LED_2_PIN);
+}
+
+__attribute__((weak)) void ergodox_right_led_3_on(void) {
+    gpio_write_pin_high(ERGODOX_LED_3_PIN);
+}
+__attribute__((weak)) void ergodox_right_led_1_off(void) {
+    gpio_write_pin_low(ERGODOX_LED_1_PIN);
+}
+
+__attribute__((weak)) void ergodox_right_led_2_off(void) {
+    gpio_write_pin_low(ERGODOX_LED_2_PIN);
+}
+
+__attribute__((weak)) void ergodox_right_led_3_off(void) {
+    gpio_write_pin_low(ERGODOX_LED_3_PIN);
+}
+
 void keyboard_post_init_sub(void) {
     // keyboard LEDs (see "PWM on ports OC1(A|B|C)" in "teensy-2-0.md")
     TCCR1A = 0b10101001; // set and configure fast PWM
     TCCR1B = 0b00001001; // set and configure fast PWM
 
     // (tied to Vcc for hardware convenience)
-    setPinInput(B4);
+    gpio_set_pin_input(B4);
 
     // unused pins - C7, D4, D5, E6
     // set as input with internal pull-up enabled
-    setPinInputHigh(C7);
-    setPinInputHigh(D4);
-    setPinInputHigh(D5);
-    setPinInputHigh(E6);
-
-    setPinOutput(ERGODOX_LED_1_PIN);
-    setPinOutput(ERGODOX_LED_2_PIN);
-    setPinOutput(ERGODOX_LED_3_PIN);
+    gpio_set_pin_input_high(C7);
+    gpio_set_pin_input_high(D4);
+    gpio_set_pin_input_high(D5);
+    gpio_set_pin_input_high(E6);
 }
 
 #ifdef RGB_MATRIX_ENABLE
