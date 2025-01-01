@@ -22,3 +22,5 @@ TAP_DANCE_ENABLE = yes
 
 # for more tips for reducing firmware size, see this
 # /docs/squeezing_avr.md
+
+RGB_MATRIX_CUSTOM_USER = yes
