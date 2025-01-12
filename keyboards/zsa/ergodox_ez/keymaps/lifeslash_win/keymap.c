@@ -19,8 +19,8 @@ enum custom_keycodes {
   LAYER_KEY
 };
 
-#define LAYER_CYCLE_START 0
-#define LAYER_CYCLE_END 2
+#define LAYER_CYCLE_START BASE
+#define LAYER_CYCLE_END RGBA
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -47,8 +47,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(
   // left hand
   C(G(KC_LEFT)),  KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_6,
-  KC_TAB,         LT(1,KC_Q),     LT(3,KC_W),     KC_E,           KC_R,           KC_T,           GUI_T(KC_QUOT),
-  CW_TOGG,        LT(2,KC_A),     KC_S,           KC_D,           KC_F,           KC_G,
+  KC_TAB,         LT(SYMB,KC_Q),  LT(RGBA,KC_W),  KC_E,           KC_R,           KC_T,           GUI_T(KC_QUOT),
+  CW_TOGG,        LT(MDIA,KC_A),  KC_S,           KC_D,           KC_F,           KC_G,
   SC_LSPO,        CTL_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           KC_B,           MEH_T(KC_EQL),
   KC_GRV,         KC_QUOT,        TD(TD_ESC_CAPS),TD(TD_C_LEFT),  KC_DOWN,
                                                                                   KC_NO,          DM_REC1,
@@ -56,8 +56,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   KC_SPC,         KC_BSPC,        DM_PLY1,
   // right hand
   KC_7,           KC_8,           KC_9,           KC_0,           ALT_TAB,        C(G(KC_D)),     C(G(KC_RIGHT)),
-  GUI_T(KC_BSLS), KC_Y,           KC_U,           KC_I,           LT(3,KC_O),     LT(1,KC_P),     KC_DEL,
-                  KC_H,           KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  ALT_T(KC_APP),
+  GUI_T(KC_BSLS), KC_Y,           KC_U,           KC_I,           LT(RGBA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
+                  KC_H,           KC_J,           KC_K,           KC_L,           LT(MDIA,KC_SCLN),ALT_T(KC_APP),
   HYPR_T(KC_MINS),KC_N,           KC_M,           KC_COMM,        ALT_T(KC_DOT),  CTL_T(KC_SLSH), SC_RSPC,
                                   KC_UP,          TD(TD_C_RGHT),  KC_LBRC,        KC_RBRC,        LAYER_KEY,
   DM_REC2,        KC_NO,
@@ -163,8 +163,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |  MOD |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |  DT  |  DT  |------|       |------|      |  MOD |
+ *                                 |  UP  | DOWN | PRNT |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 [RGBA] = LAYOUT_ergodox(
@@ -176,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
                                                                                   KC_NO,          KC_NO,  
                                                                                                   KC_NO,  
-                                                                  KC_NO,          KC_NO,          KC_NO,  
+                                                                  DT_UP,          DT_DOWN,        DT_PRNT,  
   // right hand
   KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
   KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,

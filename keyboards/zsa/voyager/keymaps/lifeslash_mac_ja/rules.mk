@@ -14,6 +14,7 @@ TAP_DANCE_ENABLE = yes
 SPACE_CADET_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = no
+DYNAMIC_TAPPING_TERM_ENABLE = yes
 
 VPATH += drivers/gpio
 SRC += matrix.c mcp23018.c

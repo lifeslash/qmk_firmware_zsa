@@ -21,6 +21,13 @@
 #define SE_SECT_MAC ALGR(KC_6)
 #define MOON_LED_LEVEL LED_LEVEL //*/
 
+enum layers {
+  BASE, // default layer
+  SYMB, // symbols
+  MDIA, // media keys
+  RGBA, // rgb lights
+};
+
 enum custom_keycodes {
   RGB_SLD = SAFE_RANGE,
   HSV_0_255_255,
@@ -37,8 +44,8 @@ uint16_t alt_tab_timer = 0;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           TD(TD_6_QUOT),                                  TD(TD_7_BSLS),  KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
-    KC_TAB,         LT(1,KC_Q),     LT(3,KC_W),     KC_E,           KC_R,           TD(TD_T_DQUO),                                  TD(TD_Y_PIPE),  KC_U,           KC_I,           LT(3,KC_O),     LT(1,KC_P),     KC_DEL,
-    CTL_T(KC_CAPS), LT(2,KC_A),     KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(2,KC_SCLN),  CTL_T(KC_MCTL),
+    KC_TAB,         LT(SYMB,KC_Q),  LT(RGBA,KC_W),  KC_E,           KC_R,           TD(TD_T_DQUO),                                  TD(TD_Y_PIPE),  KC_U,           KC_I,           LT(RGBA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
+    CTL_T(KC_CAPS), LT(MDIA,KC_A),  KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(MDIA,KC_SCLN),CTL_T(KC_MCTL),
     SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           TD(TD_B_PLUS),                                  TD(TD_N_UNDS),  KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
                                                                     KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
@@ -61,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,KC_NO,          KC_NO,          
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_NO,          
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
-                                                                    KC_NO,          KC_NO,                                          KC_NO,          RGB_MOD       
+                                                                    DT_UP,          DT_DOWN,                                        KC_NO,          RGB_MOD       
   ),
 };
 /*
