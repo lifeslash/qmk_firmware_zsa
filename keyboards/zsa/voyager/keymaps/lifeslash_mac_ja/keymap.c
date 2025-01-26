@@ -43,16 +43,16 @@ uint16_t alt_tab_timer = 0;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           TD(TD_6_QUOT),                                  TD(TD_7_BSLS),  KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
-    KC_TAB,         LT(SYMB,KC_Q),  LT(RGBA,KC_W),  KC_E,           KC_R,           TD(TD_T_DQUO),                                  TD(TD_Y_PIPE),  KC_U,           KC_I,           LT(RGBA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
-    CTL_T(KC_CAPS), LT(MDIA,KC_A),  KC_S,           KC_D,           KC_F,           TD(TD_G_EQL),                                   TD(TD_H_MINS),  KC_J,           KC_K,           KC_L,           LT(MDIA,KC_SCLN),CTL_T(KC_MCTL),
-    SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           TD(TD_B_PLUS),                                  TD(TD_N_UNDS),  KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
+    TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
+    KC_TAB,         LT(SYMB,KC_Q),  LT(RGBA,KC_W),  KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           LT(RGBA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
+    CTL_T(KC_CAPS), LT(MDIA,KC_A),  KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           LT(MDIA,KC_SCLN),CTL_T(KC_MCTL),
+    SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
                                                                     KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
   [1] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
-    KC_ESC,         KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_NO,                                          KC_NO,          KC_MINS,        KC_UNDS,        KC_EQL,         KC_PLUS,        KC_PSCR,           
-    KC_CAPS,        KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_NO,                                          KC_NO,          KC_QUOT,        KC_DQUO,        KC_BSLS,        KC_PIPE,        KC_INS,      
+    KC_ESC,         KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_QUOT,                                        KC_BSLS,        KC_QUOT,        KC_DQUO,        KC_BSLS,        KC_PIPE,        KC_PSCR,           
+    KC_CAPS,        KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_EQL,                                         KC_MINS,        KC_MINS,        KC_UNDS,        KC_EQL,         KC_PLUS,        KC_INS,      
     KC_LBRC,        KC_NO,          KC_INT1,        KC_INT2,        KC_INT3,        KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_RBRC,       
                                                                     TD(TD_A_LEFT),  KC_DOWN,                                        KC_UP,          TD(TD_A_RGHT)
   ),
