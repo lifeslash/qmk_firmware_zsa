@@ -6,37 +6,35 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/zsa/qmk_firmware.svg)](https://github.com/zsa/qmk_firmware/pulse/monthly)
 [![GitHub forks](https://img.shields.io/github/forks/zsa/qmk_firmware.svg?style=social&label=Fork)](https://github.com/zsa/qmk_firmware/)
 
-This purpose of this fork is maintain a clean repo that only contains the keyboard code that we need, and as little else as possible.  This is to keep it lightweight, since we only need a couple of keyboards. This is the repo that the EZ Configurator will pull from.
+This purpose of this fork is maintain a clean repo that only contains the keyboard code that we need, and as little else as possible.  This is to keep it lightweight, since we only need a few keyboards. This is the repo that Oryx pulls from.
+
 ## Documentation
 
 * [See the official documentation on docs.qmk.fm](https://docs.qmk.fm)
 
 The docs are powered by [VitePress](https://vitepress.dev/). They are also viewable offline; see [Previewing the Documentation](https://docs.qmk.fm/#/contributing?id=previewing-the-documentation) for more details.
 
-You can request changes by making a fork and opening a [pull request](https://github.com/qmk/qmk_firmware/pulls).
-
-
 ## Supported Keyboards
-
-* [ErgoDox EZ](/keyboards/ergodox_ez/)
-* [Planck EZ](/keyboards/planck/ez)
-* [Moonlander Mark I](/keyboards/moonlander)
+* [ErgoDox EZ](/keyboards/zsa/ergodox_ez/)
+* [Planck EZ](/keyboards/zsa/planck_ez/)
+* [Moonlander Mark I](/keyboards/zsa/moonlander/)
+* [Voyager](/keyboards/zsa/voyager/)
 
 ## Building
-
 To set up the local build enviroment to create the firmware image manually, head to the [Newbs guide from QMK](https://docs.qmk.fm/#/newbs).
+
 And instead of using just `qmk setup`, you will want to run this instead:
 
 ```sh
-qmk setup zsa/qmk_firmware -b firmware23
+qmk setup zsa/qmk_firmware -b firmware24
 ```
 
-## Maintainers
+Note the current branch of ZSA's QMK fork and replace the above command with that if this is out of date. You can also compile against different firmware revisions by specifying a different branch. 
 
+## Maintainers
 QMK is developed and maintained by Jack Humbert of OLKB with contributions from the community, and of course, [Hasu](https://github.com/tmk). The OLKB product firmwares are maintained by [Jack Humbert](https://github.com/jackhumbert), the Ergodox EZ by [ZSA Technology Labs](https://github.com/zsa), the Clueboard by [Zach White](https://github.com/skullydazed), and the Atreus by [Phil Hagelberg](https://github.com/technomancy).
 
 # Update Process
-
 1. Check out branch from ZSA's master branch:
     1. `git remote add zsa https://github.com/zsa/qmk_firmware.git`
     2. `git fetch --all`
@@ -65,11 +63,9 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
       git checkout HEAD -- keyboards/handwired/pytest
       ```
     - Resolve merge conflicts, and commit.
-
 4. Commit update
    * Include commit info in `[changelog.md](changelog.md)`
 5. Open Pull request, and include information about the commit
 
 ## Strategy
-
-To keep PRs small and easier to test, they should ideally be 1:1 with commits from QMK Firmware master. They should only group commits if/when it makes sense. Such as multiple commits for a specific feature (split RGB support, for instance)
+To keep PRs small and easier to test, they should ideally be 1:1 with commits from QMK Firmware master. They should only group commits if/when it makes sense, such as multiple commits for a specific feature (split RGB support, for instance).

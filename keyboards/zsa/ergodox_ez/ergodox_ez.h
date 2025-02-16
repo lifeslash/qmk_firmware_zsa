@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 #include <stdint.h>
 #include <stdbool.h>
 #include "i2c_master.h"
