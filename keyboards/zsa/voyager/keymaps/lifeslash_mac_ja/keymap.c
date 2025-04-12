@@ -24,8 +24,7 @@
 enum layers {
   BASE, // default layer
   SYMB, // symbols
-  MDIA, // media keys
-  RGBA, // rgb lights
+  MDIA // media keys
 };
 
 enum custom_keycodes {
@@ -34,52 +33,46 @@ enum custom_keycodes {
   HSV_74_255_255,
   HSV_169_255_255,
   HANZEN,
-  CMDTAB
+  CMDTAB,
+  VRSN,
+  LAYER_KEY
 };
 
 bool is_hanzen = true;
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
+#define LAYER_CYCLE_START BASE
+#define LAYER_CYCLE_END MDIA
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_voyager(
-    TD(TD_1_LEFT),  KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           CMDTAB,         TD(TD_GRV_RGHT),       
-    KC_TAB,         LT(SYMB,KC_Q),  LT(RGBA,KC_W),  KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           LT(RGBA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
-    CTL_T(KC_CAPS), LT(MDIA,KC_A),  KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           LT(MDIA,KC_SCLN),CTL_T(KC_MCTL),
+  [BASE] = LAYOUT_voyager(
+    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_6,                                           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINS,        KC_EQL,       
+    KC_TAB,         LT(SYMB,KC_Q),  LT(MDIA,KC_W),  KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           LT(MDIA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
+    CTL_T(KC_ESC),  KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        LAYER_KEY,
     SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
-                                                                    KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
+                                                                    KC_SPC,         KC_BSPC,                                        KC_ENT,         HANZEN
   ),
-  [1] = LAYOUT_voyager(
+  [SYMB] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
-    KC_ESC,         KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_QUOT,                                        KC_BSLS,        KC_QUOT,        KC_DQUO,        KC_BSLS,        KC_PIPE,        KC_PSCR,           
-    KC_CAPS,        KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_EQL,                                         KC_MINS,        KC_MINS,        KC_UNDS,        KC_EQL,         KC_PLUS,        KC_INS,      
-    KC_LBRC,        KC_NO,          KC_INT1,        KC_INT2,        KC_INT3,        KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_RBRC,       
-                                                                    TD(TD_A_LEFT),  KC_DOWN,                                        KC_UP,          TD(TD_A_RGHT)
+    KC_CAPS,        KC_NO,          KC_PGUP,        KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_UP,          KC_LBRC,        KC_RBRC,        KC_BSPC,           
+    OSM(MOD_LCTL),  KC_HOME,        KC_PGDN,        KC_END,         KC_NO,          KC_NO,                                          KC_NO,          KC_LEFT,        KC_DOWN,        KC_RGHT,        KC_QUOT,        KC_TRNS,      
+    OSM(MOD_LSFT),  KC_INT1,        KC_INT3,        KC_LNG5,        KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_GRV,         KC_BSLS,        OSM(MOD_LSFT),       
+                                                                    LCTL(KC_LEFT),  CMDTAB,                                         KC_MCTL,        LCTL(KC_RGHT)
   ),
-  [2] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_7,           KC_8,           KC_9,           KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_4,           KC_5,           KC_6,           KC_NO,          KC_NO,          
-    KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,                                          KC_NO,          KC_1,           KC_2,           KC_3,           KC_NO,          KC_NO,          
-    KC_NO,          KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_NO,          KC_NO,                                          KC_NO,          KC_0,           KC_COMMA,       KC_DOT,         KC_NO,          KC_NO,          
-                                                                    KC_HOME,        KC_PGDN,                                        KC_PGUP,        KC_END       
-  ),
-  [3] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,KC_NO,          KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_NO,          
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
-                                                                    DT_UP,          DT_DOWN,                                        KC_NO,          RGB_MOD       
+  [MDIA] = LAYOUT_voyager(
+    VRSN,           KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_PSCR,          
+    QK_BOOT,        KC_NO,          KC_MS_U,        KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,KC_NO,          KC_INS,          
+    KC_NO,          KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_NO,          KC_NO,                                          KC_NO,          RGB_VAD,        RGB_VAI,        RGB_HUD,        RGB_HUI,        KC_TRNS,          
+    KC_NO,          KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
+                                                                    KC_NO,          KC_NO,                                          RGB_MOD,        KC_NO       
   ),
 };
-/*
-const uint16_t PROGMEM combo0[] = { MT(MOD_RSFT, KC_QUOTE), MT(MOD_LSFT, KC_BSPACE), COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, KC_CAPSLOCK),
-}; //*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case VRSN:
+      SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+      return false;
     case HANZEN:
       if (record->event.pressed) {
         if (is_hanzen) {
@@ -107,6 +100,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         register_code(KC_TAB);
       } else {
         unregister_code(KC_TAB);
+      }
+      return false;
+    case LAYER_KEY:
+      {
+        uint8_t current_layer = get_highest_layer(layer_state);
+        if(current_layer > LAYER_CYCLE_END || current_layer < LAYER_CYCLE_START) {
+          return false;
+        }
+        uint8_t next_layer = current_layer + 1;
+        if(next_layer > LAYER_CYCLE_END) {
+          next_layer = LAYER_CYCLE_START;
+        }
+        layer_move(next_layer);
       }
       return false;
     case RGB_SLD:

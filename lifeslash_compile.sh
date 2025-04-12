@@ -26,6 +26,9 @@ make clean
 #fi
 
 #make voyager:lifeslash_mac_ja
+make clean
 qmk compile -kb voyager -km lifeslash_mac_ja
+make clean
 qmk compile -kb ergodox_ez -km lifeslash_linux
+make clean
 qmk compile -kb ergodox_ez -km lifeslash_win
