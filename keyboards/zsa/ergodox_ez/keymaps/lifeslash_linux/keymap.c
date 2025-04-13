@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // left hand
   KC_NO,          KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,
   KC_CAPS,        KC_NO,          KC_PGUP,        KC_NO,          KC_NO,          KC_NO,          KC_NO,
-  OSM(MOD_LCTL),  KC_HOME,        KC_PGDN,        KC_END,         KC_NO,          KC_NO,
+  QK_LOCK,        KC_HOME,        KC_PGDN,        KC_END,         KC_NO,          KC_NO,
   OSM(MOD_LSFT),  KC_INT1,        KC_INT3,        KC_LNG5,        KC_NO,          KC_NO,          KC_NO,
   EE_CLR,         KC_NO,          KC_NO,          KC_HOME,        KC_PGDN,
                                                                                   KC_NO,          KC_NO,
