@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         LT(SYMB,KC_Q),  LT(MDIA,KC_W),  KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           LT(MDIA,KC_O),  LT(SYMB,KC_P),  KC_DEL,
     CTL_T(KC_ESC),  KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        LAYER_KEY,
     SC_LSPO,        GUI_T(KC_Z),    ALT_T(KC_X),    KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       ALT_T(KC_DOT),  GUI_T(KC_SLSH), SC_RSPC,
-                                                                    KC_SPC,         KC_BSPC,                                        KC_ENT,         HANZEN
+                                                                    KC_SPC,         KC_BSPC,                                        HANZEN,         KC_ENT
   ),
   [SYMB] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
