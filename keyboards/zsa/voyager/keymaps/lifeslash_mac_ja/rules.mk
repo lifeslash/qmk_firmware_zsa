@@ -15,7 +15,7 @@ SPACE_CADET_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = no
 DYNAMIC_TAPPING_TERM_ENABLE = yes
-KEY_LOCK_ENABLE = yes
+# KEY_LOCK_ENABLE = yes
 
 VPATH += drivers/gpio
 SRC += matrix.c mcp23018.c
