@@ -1,5 +1,5 @@
 // disable one shot keys
-#define NO_ACTION_ONESHOT
+// #define NO_ACTION_ONESHOT
 
 // disable mod tap, layer tap, etc
 // #define NO_ACTION_TAPPING

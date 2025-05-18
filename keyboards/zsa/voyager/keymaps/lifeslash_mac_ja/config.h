@@ -15,7 +15,7 @@
 
 
 // disable one shot keys
-#define NO_ACTION_ONESHOT
+// #define NO_ACTION_ONESHOT
 
 // disable mod tap, layer tap, etc
 // #define NO_ACTION_TAPPING
@@ -23,7 +23,7 @@
 // disable audio efatures
 #define NO_MUSIC_MODE
 
-#define TAPPING_TERM 165
+#define TAPPING_TERM 240
 
 // disable RGB lights
 // For full list of effects, see:
