@@ -19,11 +19,7 @@
 
 #include "test_common.h"
 
-<<<<<<<< HEAD:tests/tap_hold_configurations/chordal_hold/retro_shift_permissive_hold/config.h
 #define CHORDAL_HOLD
-========
-// place overrides here
->>>>>>>> origin/master:keyboards/unikeyboard/diverge3/keymaps/iso_uk/config.h
 #define PERMISSIVE_HOLD
 
 #define RETRO_SHIFT 2 * TAPPING_TERM

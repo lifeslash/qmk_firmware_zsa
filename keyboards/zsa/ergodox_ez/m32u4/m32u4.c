@@ -53,7 +53,8 @@ void keyboard_post_init_sub(void) {
 }
 
 #ifdef RGB_MATRIX_ENABLE
-const is31_led PROGMEM g_is31_leds[RGB_MATRIX_LED_COUNT] = {
+const is31fl3731_led_t PROGMEM g_is31fl3731_leds[IS31FL3731_LED_COUNT] = {
+
 /*   driver
  *   |  R location
  *   |  |      G location

@@ -2,5 +2,8 @@
     "keyboard_name": "ErgoDox EZ Glow",
     "usb": {
         "pid": "0x4976"
+    },
+    "features": {
+        "rgb_matrix": true
     }
 }

@@ -37,5 +37,14 @@
     },
     "voyager": {
         "target": "zsa/voyager"
+    },
+    "zsa/ergodox_ez": {
+        "target": "zsa/ergodox_ez/m32u4/base"
+    },
+    "zsa/ergodox_ez/m32u4": {
+        "target": "zsa/ergodox_ez/m32u4/base"
+    },
+    "zsa/ergodox_ez/stm32": {
+        "target": "zsa/ergodox_ez/stm32/base"
     }
 }

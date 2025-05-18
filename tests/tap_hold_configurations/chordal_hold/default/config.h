@@ -1,9 +1,5 @@
-<<<<<<<< HEAD:tests/tap_hold_configurations/chordal_hold/default/config.h
 /* Copyright 2022 Vladislav Kucheriavykh
  * Copyright 2024 Google LLC
-========
-/* Copyright 2024 ThanhSon.Mech
->>>>>>>> origin/master:keyboards/trnthsn/e8ghty/halconf.h
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +17,5 @@
 
 #pragma once
 
-<<<<<<<< HEAD:tests/tap_hold_configurations/chordal_hold/default/config.h
 #include "test_common.h"
 #define CHORDAL_HOLD
-========
-#define HAL_USE_SPI TRUE
-
-#include_next <halconf.h>
->>>>>>>> origin/master:keyboards/trnthsn/e8ghty/halconf.h

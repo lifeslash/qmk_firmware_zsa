@@ -1,9 +1,5 @@
-<<<<<<<< HEAD:tests/tap_hold_configurations/chordal_hold/hold_on_other_key_press/config.h
 /* Copyright 2022 Vladislav Kucheriavykh
  * Copyright 2024 Google LLC
-========
-/* Copyright 2022 QMK
->>>>>>>> origin/master:keyboards/deemen17/de80/halconf.h
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,13 +17,6 @@
 
 #pragma once
 
-<<<<<<<< HEAD:tests/tap_hold_configurations/chordal_hold/hold_on_other_key_press/config.h
 #include "test_common.h"
 #define CHORDAL_HOLD
 #define HOLD_ON_OTHER_KEY_PRESS
-========
-#define HAL_USE_SPI TRUE
-
-#include_next <halconf.h>
-
->>>>>>>> origin/master:keyboards/deemen17/de80/halconf.h

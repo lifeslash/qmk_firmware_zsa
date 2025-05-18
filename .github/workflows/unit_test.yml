@@ -6,8 +6,7 @@ permissions:
 on:
   push:
     branches:
-    - master
-    - develop
+    - firmware[0-9]+
   pull_request:
     paths:
     - 'builddefs/**'
