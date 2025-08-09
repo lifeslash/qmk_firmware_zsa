@@ -81,9 +81,8 @@ bool dynamic_macro_record_end_kb(int8_t direction) {
     if (cancel_deferred_exec(dynamic_macro_token)) {
         dynamic_macro_token = INVALID_DEFERRED_TOKEN;
         STATUS_LED_3(false);
-        (false);
     }
-    return false;
+    return true;
 }
 #    endif
 
