@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <stdint.h>
 #include "quantum.h"
 
 extern bool mcp23018_leds[];
@@ -19,7 +20,7 @@ typedef union {
     uint32_t raw;
     struct {
         bool    disable_layer_led : 1;
-        bool    placeholder : 1;
+        uint8_t navigator_cpi : 3;
         bool    led_level : 1;
         uint8_t led_level_res : 2; // DO NOT REMOVE
     };
