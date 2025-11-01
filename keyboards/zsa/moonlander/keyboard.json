@@ -13,7 +13,7 @@
     },
     "features": {
         "audio": true,
-        "bootmagic": true,
+        "bootmagic": false,
         "command": true,
         "console": true,
         "deferred_exec": true,

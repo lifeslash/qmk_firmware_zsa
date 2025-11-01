@@ -16,8 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "i2c_master.h"
 #include "moonlander.h"
 #include "mcp23018.h"
+#ifndef ORYX_CONFIGURATOR
+// TODO: move this to a zsa community module once we adopt qmk25 100%.
+#include "i2c_master.h"
+
+#ifndef I2C_DRIVER
+#    define I2C_DRIVER I2CD1
+#endif
+void i2c_reset(void) {
+    i2cStop(&I2C_DRIVER);
+    chThdSleepMilliseconds(10);
+    i2c_init();
+}
+#endif
 
 #pragma GCC push_options
 #pragma GCC optimize("-O3")
@@ -80,8 +94,18 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
         if (++mcp23018_reset_loop > 0x1FFF) {
             if (io_expander_ready()) {
                 // If we managed to initialize the mcp23018 - we need to reinitialize the matrix / layer state. During an electric discharge the i2c peripherals might be in a weird state. Giving a delay and resetting the MCU allows to recover from this.
-                wait_ms(200);
-                mcu_reset();
+//                wait_ms(200);
+ //               mcu_reset();
+ //               WIP: reinit the io expander and led driver
+                i2c_reset();
+                mcp23018_reset_loop = 0;
+                mcp23018_errors     = 0;
+                mcp23018_init(MCP23018_DEFAULT_ADDRESS);
+                mcp23018_errors += !mcp23018_set_config(MCP23018_DEFAULT_ADDRESS, mcp23018_PORTA, 0b00000000);
+                mcp23018_errors += !mcp23018_set_config(MCP23018_DEFAULT_ADDRESS, mcp23018_PORTB, 0b00111111);
+                #ifdef RGB_MATRIX_ENABLE
+                rgb_matrix_init();
+                #endif
             }
         }
     }
@@ -164,7 +188,7 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             mcp23018_errors += !mcp23018_read_pins(MCP23018_DEFAULT_ADDRESS, mcp23018_PORTB, &rx);
             data = ~(rx & 0b00111111);
         } else {
-            data = 0;
+            data = 0b11000000;
         }
 
         if (raw_matrix_right[row] != data) {

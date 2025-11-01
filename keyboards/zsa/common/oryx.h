@@ -85,6 +85,9 @@ void pairing_succesful_event(void);
 void toggle_smart_layer(void);
 void trigger_smart_layer(void);
 void set_webhid_effect(void);
+#if !defined(PROTOCOL_LUFA)
+void i2c_reset(void);
+#endif
 
 void oryx_layer_event(void);
 void layer_state_set_oryx(layer_state_t state);

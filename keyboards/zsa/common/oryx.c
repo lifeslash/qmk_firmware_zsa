@@ -3,6 +3,9 @@
 
 #include <string.h>
 #include QMK_KEYBOARD_H
+#if !defined(PROTOCOL_LUFA)
+#include "i2c_master.h"
+#endif
 #include "oryx.h"
 #include "action_util.h"
 
@@ -26,6 +29,18 @@ bool send_report(usb_endpoint_in_lut_t endpoint, void *report, size_t size);
 
 #ifdef RGB_MATRIX_ENABLE
 RGB webhid_leds[RGB_MATRIX_LED_COUNT];
+#endif
+
+
+#if !defined(PROTOCOL_LUFA)
+#ifndef I2C_DRIVER
+#    define I2C_DRIVER I2CD1
+#endif
+void i2c_reset(void) {
+    i2cStop(&I2C_DRIVER);
+    chThdSleepMilliseconds(10);
+    i2c_init();
+}
 #endif
 
 void raw_hid_send_oryx(uint8_t *data, uint8_t length) {
