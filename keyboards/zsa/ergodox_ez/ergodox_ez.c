@@ -304,8 +304,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 void eeconfig_init_kb(void) { // EEPROM is getting reset!
     keyboard_config.raw       = 0;
     keyboard_config.led_level = 4;
-    keyboard_config.navigator_cpi = 3;
-    eeconfig_update_kb(keyboard_config.raw);
     eeconfig_init_user();
 }
 
@@ -317,14 +315,12 @@ bool dynamic_macro_record_start_kb(int8_t direction) {
     is_dynamic_recording = true;
     dynamic_loop_timer   = timer_read();
     ergodox_right_led_1_on();
-
     return true;
 }
 
 bool dynamic_macro_record_end_kb(int8_t direction) {
     is_dynamic_recording = false;
     layer_state_set_user(layer_state);
-
     return true;
 }
 #endif

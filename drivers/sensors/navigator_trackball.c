@@ -19,7 +19,7 @@ const pointing_device_driver_t navigator_trackball_pointing_device_driver = {
     .set_cpi    = navigator_trackball_set_cpi
 };
 
-uint8_t current_cpi = DEFAULT_CPI_TICK;
+uint8_t current_cpi = NAVIGATOR_TRACKBALL_CPI;
 
 uint8_t has_motion = 0;
 
@@ -77,58 +77,11 @@ i2c_status_t sci18is606_configure(void) {
 }
 
 bool paw3805ek_set_cpi(void) {
-    uint8_t next_cpi_x = 0;
-    uint8_t next_cpi_y = 0;
-    // traverse the sequence by compairing the cpi_x value with the current cpi_x value
-    // set the cpi to the next value in the sequence
-    switch (current_cpi) {
-        case 1: {
-            next_cpi_x = CPI_X_800;
-            next_cpi_y = CPI_Y_800;
-            break;
-        }
-        case 2: {
-            next_cpi_x = CPI_X_1000;
-            next_cpi_y = CPI_Y_1000;
-            break;
-        }
-        case 3: {
-            next_cpi_x = CPI_X_1200;
-            next_cpi_y = CPI_Y_1200;
-            break;
-        }
-        case 4: {
-            next_cpi_x = CPI_X_1600;
-            next_cpi_y = CPI_Y_1600;
-            break;
-        }
-        case 5: {
-            next_cpi_x = CPI_X_2000;
-            next_cpi_y = CPI_Y_2000;
-            break;
-        }
-        case 6: {
-            next_cpi_x = CPI_X_2400;
-            next_cpi_y = CPI_Y_2400;
-            break;
-        }
-        case 7: {
-            next_cpi_x = CPI_X_3000;
-            next_cpi_y = CPI_Y_3000;
-            break;
-        }
-        default: {
-            current_cpi = DEFAULT_CPI_TICK;
-            next_cpi_x  = CPI_X_800;
-            next_cpi_y  = CPI_Y_800;
-            break;
-        }
-    }
 
     paw3805ek_reg_seq_t cpi_reg_seq[] = {
         {0x09 | WRITE_REG_BIT, 0x5A}, // Disable write protection
-        {0x0D | WRITE_REG_BIT, next_cpi_x},
-        {0x0E | WRITE_REG_BIT, next_cpi_y},
+        {0x0D | WRITE_REG_BIT, current_cpi},
+        {0x0E | WRITE_REG_BIT, current_cpi},
         {0x09 | WRITE_REG_BIT, 0x00}, // Enable the write protection
     };
 
@@ -239,6 +192,7 @@ void navigator_trackball_device_init(void) {
     }
 
     trackball_init = 1;
+    restore_cpi(current_cpi);
     if (!callback_token) {
         // Register the callback to read the trackball motion
         callback_token = defer_exec(NAVIGATOR_TRACKBALL_READ, sci18is606_read_callback, NULL);
@@ -268,13 +222,13 @@ void restore_cpi(uint8_t cpi) {
 
 void navigator_trackball_set_cpi(uint16_t cpi) {
     if (cpi == 0) { // Decrease one tick
-        if (current_cpi > 1) {
-            current_cpi--;
+        if (current_cpi > NAVIGATOR_TRACKBALL_CPI_TICK) {
+            current_cpi -= NAVIGATOR_TRACKBALL_CPI_TICK;
             paw3805ek_set_cpi();
         }
     } else {
-        if (current_cpi < CPI_TICKS) {
-            current_cpi++;
+        if (current_cpi <= NAVIGATOR_TRACKBALL_CPI_MAX - NAVIGATOR_TRACKBALL_CPI_TICK) {
+            current_cpi += NAVIGATOR_TRACKBALL_CPI_TICK;
             paw3805ek_set_cpi();
         }
     }

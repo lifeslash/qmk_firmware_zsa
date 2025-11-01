@@ -8,8 +8,8 @@
 #    include "oryx.h"
 #endif // COMMUNITY_MODULE_ORYX_ENABLE
 #ifdef COMMUNITY_MODULE_DEFAULTS_ENABLE
-#    include "defaults.h"
-#endif // COMMUNITY_MODULE_ORYX_ENABLE
+#     include "defaults.h"
+#endif
 
 keyboard_config_t keyboard_config;
 
@@ -301,7 +301,6 @@ void eeconfig_init_kb(void) { // EEPROM is getting reset!
     keyboard_config.raw           = 0;
     keyboard_config.led_level     = true;
     keyboard_config.led_level_res = 0b11;
-    keyboard_config.navigator_cpi = 3;
     eeconfig_update_kb(keyboard_config.raw);
     eeconfig_init_user();
 }

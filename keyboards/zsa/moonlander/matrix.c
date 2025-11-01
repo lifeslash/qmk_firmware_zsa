@@ -105,6 +105,9 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
                 mcp23018_errors     = mcp23018_init_local(false);
 #ifdef RGB_MATRIX_ENABLE
                 rgb_matrix_init();
+                if (rgb_matrix_get_mode() == 1 && keyboard_config.rgb_matrix_enable) {
+                    rgb_matrix_set_color_all(0, 0, 0);
+                }
 #endif
             }
         }

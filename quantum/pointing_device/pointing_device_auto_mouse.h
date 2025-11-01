@@ -45,6 +45,9 @@
 #ifndef AUTO_MOUSE_THRESHOLD
 #    define AUTO_MOUSE_THRESHOLD 10
 #endif
+#ifndef AUTO_MOUSE_SCROLL_THRESHOLD
+#    define AUTO_MOUSE_SCROLL_THRESHOLD AUTO_MOUSE_THRESHOLD
+#endif
 
 /* data structure */
 typedef struct {
@@ -70,6 +73,9 @@ typedef struct {
         int8_t mouse_key_tracker;
     } status;
     total_mouse_movement_t total_mouse_movement;
+#ifdef AUTO_MOUSE_ONESHOT
+    bool one_shot;
+#endif
 } auto_mouse_context_t;
 
 /* ----------Set up and control------------------------------------------------------------------------------ */

@@ -10,6 +10,16 @@
 #    define NAVIGATOR_TRACKBALL_ADDRESS 0x50
 #endif
 
+#ifndef NAVIGATOR_TRACKBALL_CPI
+#    define NAVIGATOR_TRACKBALL_CPI 40
+#endif
+
+#ifndef NAVIGATOR_TRACKBALL_CPI_TICK
+#    define NAVIGATOR_TRACKBALL_CPI_TICK 5
+#endif
+
+#define NAVIGATOR_TRACKBALL_CPI_MAX 125
+
 #ifndef NAVIGATOR_TRACKBALL_TIMEOUT
 #    define NAVIGATOR_TRACKBALL_TIMEOUT 100
 #endif
@@ -28,33 +38,6 @@
 #define SCI18IS606_GET_ID 0xFE
 
 #define WRITE_REG_BIT 0x80
-/*
-The PAW3805EK datasheet suggests the following CPI values for the X and Y axes:
-CPI    X-axis  Y-axis
-800    0x1F    0x22
-1000   0x26    0x2A
-1200   0x2E    0x32
-1600   0x3C    0x43
-2000   0x4C    0x54
-2400   0x5B    0x64
-3000   0x70    0x7B
-*/
-#define CPI_TICKS 7
-#define DEFAULT_CPI_TICK 1
-#define CPI_X_800  0x1F
-#define CPI_Y_800  0x22
-#define CPI_X_1000 0x26
-#define CPI_Y_1000 0x2A
-#define CPI_X_1200 0x2E
-#define CPI_Y_1200 0x32
-#define CPI_X_1600 0x3C
-#define CPI_Y_1600 0x43
-#define CPI_X_2000 0x4C
-#define CPI_Y_2000 0x54
-#define CPI_X_2400 0x5B
-#define CPI_Y_2400 0x64
-#define CPI_X_3000 0x70
-#define CPI_Y_3000 0x7B
 
 typedef struct {
     uint8_t reg;

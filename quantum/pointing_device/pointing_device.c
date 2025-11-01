@@ -325,8 +325,6 @@ __attribute__((weak)) bool pointing_device_task(void) {
     local_mouse_report = is_keyboard_left() ? pointing_device_task_combined(local_mouse_report, shared_mouse_report) : pointing_device_task_combined(shared_mouse_report, local_mouse_report);
 #else
     local_mouse_report = pointing_device_adjust_by_defines(local_mouse_report);
-    local_mouse_report = pointing_device_task_modules(local_mouse_report);
-    local_mouse_report = pointing_device_task_kb(local_mouse_report);
 #endif
     local_mouse_report = pointing_device_task_modules(local_mouse_report);
     local_mouse_report = pointing_device_task_kb(local_mouse_report);
