@@ -458,10 +458,6 @@ void keyboard_post_init_kb(void) {
     is_launching = true;
     defer_exec(500, startup_exec, NULL);
 #endif
-#if defined(DEFERRED_EXEC_ENABLE)
-    is_launching = true;
-    defer_exec(500, startup_exec, NULL);
-#endif
     keyboard_post_init_user();
 }
 

@@ -304,6 +304,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 void eeconfig_init_kb(void) { // EEPROM is getting reset!
     keyboard_config.raw       = 0;
     keyboard_config.led_level = 4;
+    eeconfig_update_kb(keyboard_config.raw);
     eeconfig_init_user();
 }
 

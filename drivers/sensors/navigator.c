@@ -124,5 +124,5 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
         mouse_report.x = 0;
         mouse_report.y = 0;
     }
-    return mouse_report;
+    return pointing_device_task_user(mouse_report);
 }

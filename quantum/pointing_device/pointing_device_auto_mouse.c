@@ -55,6 +55,10 @@ bool is_auto_mouse_active(void) {
 #ifdef AUTO_MOUSE_ONESHOT
     return auto_mouse_context.status.is_activated || auto_mouse_context.status.mouse_key_tracker || layer_hold_check() || auto_mouse_context.one_shot;
 #else
+    printf("is_auto_mouse_active\n");
+    printf("is_activated: %d\n", auto_mouse_context.status.is_activated);
+    printf("mouse_key_tracker: %d\n", auto_mouse_context.status.mouse_key_tracker);
+    printf("layer_hold_check: %d\n", layer_hold_check());
     return auto_mouse_context.status.is_activated || auto_mouse_context.status.mouse_key_tracker || layer_hold_check();
 #endif
 }
@@ -201,6 +205,18 @@ void set_auto_mouse_key_tracker(int8_t key_tracker) {
 void auto_mouse_toggle(void) {
     auto_mouse_context.status.is_toggled ^= 1;
     auto_mouse_context.timer.delay = 0;
+}
+
+/** @brief set toggled mouse layer flag
+ *
+ * Change state of local layer_toggled bool meant to track when the mouse layer is toggled on by other means
+ *
+ * NOTE: While is_toggled is true it will prevent deactiving target layer (but not activation)
+ *
+ * @param[in] toggled bool
+ */
+void set_auto_mouse_toggled(bool toggled) {
+    auto_mouse_context.status.is_toggled = toggled;
 }
 
 /**

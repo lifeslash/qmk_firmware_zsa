@@ -86,6 +86,7 @@ uint8_t       get_auto_mouse_layer(void);                               // get t
 void          set_auto_mouse_timeout(uint16_t timeout);                 // set layer timeout
 uint16_t      get_auto_mouse_timeout(void);                             // get layer timeout
 void          set_auto_mouse_debounce(uint8_t debounce);                // set debounce
+void          set_auto_mouse_toggled(bool toggled);                     // set toggled mouse layer flag
 uint8_t       get_auto_mouse_debounce(void);                            // get debounce
 void          set_auto_mouse_key_tracker(int8_t key_tracker);           // set key tracker
 int8_t        get_auto_mouse_key_tracker(void);                         // get key tracker
